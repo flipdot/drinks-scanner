@@ -1,0 +1,11 @@
+#!/bin/bash
+
+for i in $@; do
+  convert ${i} -background black -rotate -90 ${i}.pbm
+  convert ${i}.pbm -crop 20x16+0+0 -extent 24x16 ${i}links.pbm
+  pnminvert ${i}links.pbm > ${i}links.inv.pbm
+  tail -n +3 ${i}links.inv.pbm > ${i}links.bin
+done
+
+cat $3links.bin $2links.bin $1links.bin > $1.bin
+dd if=$1.bin skip=0 bs=144 count=1 2>/dev/null | socat - UDP:192.168.3.36:2323 &
