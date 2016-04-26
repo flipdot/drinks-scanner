@@ -10,6 +10,7 @@ from database.storage import get_session
 from database.models.scan_event import ScanEvent
 
 import datetime
+import os
 
 app = Flask(__name__)
 
@@ -27,6 +28,10 @@ def start_barcode_scanner_bg():
     t.start()
 
 if __name__ == '__main__':
+    if(os.geteuid()!= 0):
+        print "Please run as root, so we can access the barcode scanner"
+        exit(0)
+
     init_db()
 
     start_barcode_scanner_bg()
