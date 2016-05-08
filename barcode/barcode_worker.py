@@ -5,6 +5,7 @@ from database.storage import get_session
 from database.models.scan_event import ScanEvent
 
 from flipdotswall.printNumber import print_fd
+from drinks_display.display import Display
 
 class Worker:
     def __init__(self):
@@ -37,6 +38,10 @@ class Worker:
         today = datetime.date.strftime(datetime.datetime.now(), '%Y-%m-%d')
         amount = self.__get_drinks_count(today)
         print_fd(amount)
+
+        display = Display()
+        display.log(barcode)
+
         print '|-| '+barcode + ' - '+ str(amount) +' |-|'
 
     def on_barcode(self, barcode):
