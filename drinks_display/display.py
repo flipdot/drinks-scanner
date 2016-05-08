@@ -1,3 +1,4 @@
+import urllib
 import urllib2
 
 class Display(object):
@@ -5,4 +6,7 @@ class Display(object):
         pass
 
     def log(self, msg):
-        urllib2.urlopen("http://192.168.3.231:5000/?msg="+msg).read()
+        query = urllib.urlencode({
+            'msg': msg
+        })
+        urllib2.urlopen("http://192.168.3.231:5000/?"+query).read()
