@@ -36,11 +36,12 @@ class Worker:
 
     def __print_flipdots(self, barcode):
         today = datetime.date.strftime(datetime.datetime.now(), '%Y-%m-%d')
+        now = today + ' ' +datetime.date.strftime(datetime.datetime.now(), '%H:%M')
         amount = self.__get_drinks_count(today)
         print_fd(amount)
 
         display = Display()
-        display.log(barcode)
+        display.log(barcode + ' ' + now)
 
         print '|-| '+barcode + ' - '+ str(amount) +' |-|'
 
