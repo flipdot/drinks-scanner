@@ -41,7 +41,7 @@ class Worker:
         print_fd(amount)
 
         display = Display()
-        display.log(barcode + ' - ' + now)
+        display.log(barcode)
 
         print '|-| '+barcode + ' - '+ str(amount) +' |-|'
 
