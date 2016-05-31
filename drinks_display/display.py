@@ -7,6 +7,6 @@ class Display(object):
 
     def log(self, msg):
         query = urllib.urlencode({
-            'msg': msg
+            'barcode': msg
         })
-        urllib2.urlopen("http://192.168.3.231:5000/?"+query).read()
+        urllib2.urlopen("http://drinks-touch:5000/barcode_scanned?"+query).read()
